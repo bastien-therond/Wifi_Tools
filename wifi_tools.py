@@ -192,10 +192,59 @@ def User():
         print("\n************************************************************")
         print("\n*************** Bienvenue dans l'interface 2 ***************")
         print("\n************************************************************")
-        accpt = input("Vouler vous continuez ? (o ou N)")
-        if accpt == str("o"):
-            dependence = input("Vouler vous installer les dépendences ? (o ou N)")
-            if dependence == str("o"):
+        print("1. Dicter la liste a utiliser")
+
+        print("2. Utiliser la liste de base (recommander)\n\n")
+    
+        cont = input("Vouller vous vraiment continuer (oui ou non) : ")
+        dependence = input("Vouler vous installer les dépendences ? (o ou N)")
+        if dependence == str("o"):
+            os.system('sudo apt-get install wifite -y')
+            os.system('sudo python setup.py install -y')
+            print('wifite installed')
+            os.system('sudo apt-get install')
+            print("MaJ faite")
+            os.system('sudo apt-get install aircrack-ng -y')
+            os.system('sudo apt-get install reaver -y')
+            os.system('sudo apt-get install pyrit -y')
+            os.system('sudo apt-get install tshark')
+            print("Tout les paquets sont installer")
+
+    
+        if cont == str("oui"):
+            opls = input("Entrer une options valide : ")
+
+            if not opls == str("1") and ("2"):
+                print("ERREUR: Entrer une options valide")
+
+            if opls == str("1") :
+                lsr = input("Entrer le nom de la liste : ")
+                os.system("clear")
+                os.system("sudo wifite --dict " + lsr)
+
+    
+            if opls == str("2"):
+                os.system("clear")
+                os.system("sudo wifite --dict password.txt")
+    
+        if cont == str("non"):
+                Finish()
+                quite = input("voulez vous enlever votre interface en pause ? (oui ou non) : ")
+                if quite == str("non"):
+                    Finish()
+    
+                if quite == str("oui"):
+                    msp = input("Veullier enter le nom de votre interface mise en pause : ")
+                    os.system("ifconfig " + msp + " up")
+                    os.system("clear")
+                    os.system("airmon-ng stop wlan0mon")
+                    os.system("clear")
+                    Finish()
+    
+        if cont == str("non"):
+            Finish()
+
+
 
     Finish()
 
